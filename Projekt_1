@@ -98,5 +98,3 @@ for w in words:
 for length in sorted(lengths):
     stars = '*' * lengths[length]
     print(f"{length:>3}|{stars:<15}|{lengths[length]}")
-print("----------------------------------------")
-
