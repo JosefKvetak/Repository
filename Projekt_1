@@ -1,7 +1,7 @@
 """
 Projekt_1.py: první projekt do Engeto Online Python Akademie
 
-author: Josef Kvetak
+author: Josef Květák
 email: josef.kvetak@gmail.com
 """
 
