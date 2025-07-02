@@ -2,7 +2,7 @@
 Projekt_1.py: první projekt do Engeto Online Python Akademie
 
 author: Josef Kvetak
-email: ch053@seznam.cz
+email: josef.kvetak@gmail.com
 """
 
 TEXTS = [
