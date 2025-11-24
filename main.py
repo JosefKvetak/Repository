@@ -69,7 +69,8 @@ def main() -> int:
     url = sys.argv[1]
     output_file = sys.argv[2]
 
-    if not url.startswith("https://volby.cz/pls/ps2017nss/ps32"):
+    if not (url.startswith("https://volby.cz/pls/ps2017nss/ps32") or
+            url.startswith("https://www.volby.cz/pls/ps2017nss/ps32")):
         print("Neplatný URL odkaz na územní celek.")
         return 1
 
