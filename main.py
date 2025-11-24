@@ -63,7 +63,7 @@ def save_to_csv(header: List[str], rows: List[List[str]], filename: str) -> None
 def main() -> int:
     """Hlavní funkce - načte argumenty, stáhne a uloží výsledky."""
     if len(sys.argv) != 3:
-        print([translate: "Použití: python main.py <URL územního celku> <výstupní soubor.csv>"])
+        print([translate:"Použití: python main.py <URL územního celku> <výstupní soubor.csv>"])
         return 1
 
     url = sys.argv[1]
@@ -71,7 +71,7 @@ def main() -> int:
 
     if not (url.startswith("https://volby.cz/pls/ps2017nss/ps32") or
             url.startswith("https://www.volby.cz/pls/ps2017nss/ps32")):
-        print([translate: "Neplatný URL odkaz na územní celek."])
+        print([translate:"Neplatný URL odkaz na územní celek."])
         return 1
 
     try:
@@ -87,8 +87,11 @@ def main() -> int:
             try:
                 soup_munic = get_soup(full_url)
                 header, rows = parse_results_table(soup_munic)
+                if not header or not rows:
+                    print(f"[translate: Varování: Chybí data pro obec {municipality_name}, přeskočeno.]")
+                    continue
                 if not header_saved:
-                    save_header = [translate:"Kód obce"], translate:"Název obce", translate:"Voliči v seznamu", translate:"Vydané obálky", translate:"Platné hlasy"] + header[5:]
+                    save_header = [translate:"Kód obce", translate:"Název obce", translate:"Voliči v seznamu", translate:"Vydané obálky", translate:"Platné hlasy"] + header[5:]
                     header_saved = True
                 data = extract_vote_data(header, rows)
                 results.extend(data)
@@ -96,14 +99,14 @@ def main() -> int:
                 print(f"[translate: Chyba při stahování {municipality_name}:] {e}")
 
         if save_header is None:
-            print([translate: "Nebyl nalezen žádný platný výstup k uložení."])
+            print([translate:"Nebyl nalezen žádný platný výstup k uložení."])
             return 1
 
         save_to_csv(save_header, results, output_file)
         print(f"[translate: Data uložena do souboru {output_file}]")
 
     except Exception as e:
-        print([translate: "Chyba při stahování dat:"], e)
+        print([translate:"Chyba při stahování dat:"], e)
         return 1
 
     return 0
